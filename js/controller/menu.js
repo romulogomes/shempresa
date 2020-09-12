@@ -1,9 +1,9 @@
 function MenuCtrl ($scope, $rootScope, $http){
 
 	$scope.menus =  [{
-					    "nome" : "Boletim",
+					    "nome" : "Solicitações",
 					    "icone" : "clip-file-2",
-					    "link" : "boletim.html",
+					    "link" : "solicitacoes.html",
 					  },
 					  {
 					    "nome" : "Rendimento Escolar",
@@ -17,7 +17,7 @@ function MenuCtrl ($scope, $rootScope, $http){
 					  }
 					];			
 
-	$rootScope.titulo = "SIN";
-	$rootScope.subtitulo = "Sistema Informatizado de Notas";
+	$rootScope.titulo = "Farmácia do Jauro";
+	$rootScope.subtitulo = "";
 
 }
