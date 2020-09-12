@@ -1,0 +1,52 @@
+8
+
+dir
+4344
+https://172.29.0.219/svn/sistemas/Aplicacoes/SIG/login_sig/js
+https://172.29.0.219/svn/sistemas
+
+
+
+2015-10-05T14:20:41.073591Z
+4337
+romulo.gomes
+
+
+svn:special svn:externals svn:needs-lock
+
+angular.min.js
+file
+
+
+
+
+2015-02-13T14:06:55.644447Z
+75fb813ebaad1186f9fcd88fc2e9abb2
+2015-10-05T14:20:41.073591Z
+4337
+romulo.gomes
+
+fontloader.js
+file
+
+
+
+
+2015-04-24T16:48:00.000000Z
+e0236d69db11925529dcda3117545e20
+2015-10-05T14:20:41.073591Z
+4337
+romulo.gomes
+
+controller.js
+file
+
+
+
+
+2015-10-05T12:47:16.861221Z
+32aaba8f99896f28bca63e5034cb6187
+2015-10-05T14:20:41.073591Z
+4337
+romulo.gomes
+

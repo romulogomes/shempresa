@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns#" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <title>Login</title>
+    
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/sesa.css">
+    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+     <script type="text/javascript" src="js/angular.min.js"></script>
+    <script type="text/javascript" src="js/controller.js"></script>
+</head>
+
+<body>
+    <div class="b-content" ng-app ng-controller="meucontroller">
+        <div id="content_07" class="fr-widget fr-container fr_content_07">
+            <div id="c07_2_column_grid" class="fr-widget fr-grid fr_c07_2_column_grid">
+                <div id="c07_one" class="fr-widget fr-container fr_c07_one">
+                    <div id="c07_image" class="fr-widget fr-img fr_c07_image">
+                        <img src="images/logo_ita.png" style="width: 80%"/>
+                        <div class="titulo_sistema" title="SIG">SIN - Sistema Informatizados de Notas</div>
+                    </div>
+                </div><!--
+             -->
+                <div id="c05_two" class="fr-widget fr-container fr_c05_two">
+                    <div class="caixa_login">
+                
+                        <div id="c05_headline" class="fr-widget fr-text fr-wf fr_h2 fr_c07_headline">
+                            <div class="titulo_login">Autenticação de Usuário </div>
+                        </div>
+
+                      <div id="c05_paragraph_text" class="fr-widget fr-text fr-wf fr_paragraph_left fr_c07_paragraph_text">
+                        
+                        <form id="login" action="" method="POST">
+                            <span class="capsula">
+                                <i class="fa fa-user" style="color: #909090"></i>
+                                <input id="usuario" class="inputs" title="Usuario" placeholder="Usuário" ng-model="usuario" type="text">
+                            </span>
+                                     <br/><br/>
+                            <span class="capsula">
+                                <i class="fa fa-lock " style="color: #909090"></i>
+                                <input  class="inputs" placeholder="Senha" type="password" ng-model="senha"  style="width: 81.8%" >
+                            </span>
+                            
+ 
+                            <div class="login_controles">
+                                <span id="esq_senha"><a href="#">Esqueci minha senha</a></span>
+                                <button id="entrar" type="button" ng-click="envia()" class="btn btn-bricky pull-right">
+                                    Entrar <i class="fa fa-arrow-circle-right"></i>
+                                </button>
+                            </div>
+                                
+                        </form>
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="fr-copyright-footer">
+        <div class="fr-widget fr-container">
+            <div class="fr-widget fr-text fr-wf fr-made-with-froont">
+                2016 &copy; Prefeitura Municipal de Itapajé - Juntos Fazemos Mais
+            </div>
+        </div>
+        <div class="fr-bottom-em-spacer"></div>
+    </div>
+
+    <script type="text/javascript" src="vendor/jquery.min.js"></script>
+    <script type="text/javascript">
+        var fonts = {
+            "Didact Gothic": {
+                "family": "Didact Gothic",
+                "source": "google",
+                "subsets": [
+                    "cyrillic",
+                    "cyrillic-ext",
+                    "greek",
+                    "greek-ext",
+                    "latin",
+                    "latin-ext"
+                ],
+                "variants": [
+                    "regular"
+                ]
+            }
+        };
+
+       $(".inputs").keypress(function(event){
+            if(event.keyCode == 13){
+                event.preventDefault();
+                $("#entrar").click();
+            }
+        });
+        </script>
+    <script type="text/javascript" src="vendor/webfont.js"></script>
+    <script type="text/javascript" src="js/fontloader.js"></script>
+   
+</body>
+
+</html>

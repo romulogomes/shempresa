@@ -1,0 +1,28 @@
+function meucontroller($scope, $http){
+	
+	$scope.envia = function(){
+		var rootURL = "http://extranet.saude.ce.gov.br/sigews/webresources/login/";
+		if( !$scope.senha || !$scope.usuario){
+			alert('Preencha todos os campos');
+			return false;
+		}
+
+		var data = {"senha": $scope.senha, "login": $scope.usuario};
+	    var dados = JSON.stringify(data);
+
+		$http.post(rootURL, dados).
+			success(function(data) {
+			  localStorage.setItem('nome' , data.nome);
+			  location.href="../sig/index.html";
+			  
+			}).
+			error(function(data, status, headers, config) {
+			  alert('Usuario não encontrado');
+			});
+    }
+}
+
+	
+
+
+ 
