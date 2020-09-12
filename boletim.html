@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt">
+    <head>
+		<title>SIN - Sistema Informatizado de Notas</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	
+		<link rel="stylesheet" href="assets/css/main.css">
+		<link rel="stylesheet" href="assets/css/theme_light.css" type="text/css" id="skin_color">
+		<link rel="stylesheet" href="css/jquery.dataTables.css">
+		<link rel="stylesheet" type="text/css" href="css/sin.css">
+	
+		<script src="js/angular.min.js"></script>
+		<link rel="shortcut icon" href="img/favicon.ico" />
+	</head>
+	<body class="navigation-small" id="bodi" ng-app="sig_app" ng-controller="BoletimCtrl">
+		<div class="navbar navbar-inverse navbar-fixed-top">
+			<div class="container">
+				
+				<header-left></header-left>
+
+				<div class="navbar-tools">
+					<!-- MENU direita-->
+					<header-menu usuario="{{usuario()}}"></header-menu>
+				</div>
+			</div>
+		</div>
+
+			<div class="main-navigation navbar-collapse collapse" style="margin-top:42px">
+				<div class="navigation-toggler navigation-small">
+					<i class="clip-chevron-left"></i>
+					<i class="clip-chevron-right"></i>
+				</div>
+				
+				<ul class="main-navigation-menu" ng-controller="MenuCtrl">
+					<li ng-repeat="menu in menus">
+						<!-- Se nao tiver submenu -->
+						<a ng-href="{{menu.link}}" ng-hide="menu.submenu"><i class="{{menu.icone}}"></i>
+							<span class="title"> {{menu.nome}} </span><i class="icon-arrow" ng-show="menu.submenu"></i>
+						</a>
+						<!-- Se tiver submenu -->
+						<a href="" ng-show="menu.submenu"><i class="{{menu.icone}}"></i>
+							<span class="title"> {{menu.nome}} </span><i class="icon-arrow" ng-show="menu.submenu"></i>
+						</a>
+						<ul class="sub-menu">
+							<li ng-show="menu.submenu" ng-repeat="sub in menu.submenu">
+								<a href="{{sub.link}}">
+									<span class="title"> {{sub.titulo }}  </span>
+								</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+			<!-- start: PAGE -->
+			<div class="main-content">
+
+				<!-- Titulo Sistema -->
+				<div class="container" style="height: 500px !important;">
+					<div class="row">
+						<div class="col-sm-12">
+							<ol class="breadcrumb"></ol>
+							<div class="page-header" style="margin-bottom: 2px; padding-bottom: 2px; margin-top:2px">
+									<onde-estou pagina='Boletim' icone="clip-file-2"></onde-estou>
+									<titulo-sistema></titulo-sistema>
+							</div>
+						</div>
+					</div>
+						<h5 style="margin: 0px; line-height: 20px;">Aluno: <b>{{aluno.nome}}</b><br/>
+							Série: <b>{{aluno.serie}}</b><br/>
+							Turma: <b>{{aluno.turma}}</b><br/>
+							Turno: <b>{{aluno.turno}}</b><br/>
+							
+
+						</h5>
+					<!-- Conteudo -->
+					
+					<div class="tabela" ng-init="lista_notas()">
+						<table id="tabela_notas" class="tabela display" cellspacing="0">
+							<thead>
+								<tr>
+									<th><center>Disciplina</center></th>
+									<th><center>1º Bimestre</center></th>
+									<th><center>2º Bimestre</center></th>
+									<th><center>3º Bimestre</center></th>
+									<th><center>4º Bimestre</center></th>	
+								</tr>
+							</thead>
+							<tbody class='tabela_notas'>
+							</tbody>
+						</table>
+						<!--div id="loading">
+							<div id="loading_centraliza">
+								<img src="img/ajax_loading.gif">
+							</div>
+						</div-->
+					</div>
+					<div class="row">
+						<div class="col-sm-12">
+								<div class="titulo_right">
+									<div class="col-md-2">
+										<a ng-click="gera_dados_pdf()" class="pull-left btn btn-bricky"  style="margin-top:10px;"> 
+											Imprimir
+											<i class="clip-file-pdf"></i>											
+										</a>
+									</div>
+									<!--h3 id="total"></i> Situação Final </h3-->
+								</div>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- end: PAGE -->
+		</div>
+		<altera-senha></altera-senha>
+		<footer-sesa></footer-sesa>
+		
+		<script src="assets/plugins/jQuery-lib/2.0.3/jquery.min.js"></script>
+		<script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+		<script src="assets/plugins/blockUI/jquery.blockUI.js"></script>
+		<script src="assets/plugins/iCheck/jquery.icheck.min.js"></script>
+		<script src="assets/plugins/perfect-scrollbar/src/jquery.mousewheel.js"></script>
+		<script src="assets/plugins/perfect-scrollbar/src/perfect-scrollbar.js"></script>
+		<script src="assets/plugins/bootstrap-colorpalette/js/bootstrap-colorpalette.js"></script>
+		<script src="assets/js/main.js"></script>
+
+		<script src="js/jquery.dataTables.min.js"></script>
+		
+		<script src="js/controller.js"></script>
+		<script src="js/controller/boletim.js"></script>
+		<script src="js/controller/menu.js"></script>
+		<script src="js/senha.js"></script>
+
+		<script src="js/jspdf.min.js"></script>                 
+		<script src="js/jspdf.plugin.autotable.js"></script>	
+		<script src="js/toPdf.js"></script>
+		<script>
+			$(document).ready(function () {
+				Main.init();
+		    });
+		</script>
+	</body>
+</html>

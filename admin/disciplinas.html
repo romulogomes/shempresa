@@ -1,0 +1,184 @@
+'<!DOCTYPE html>
+<html lang="pt">
+    <head>
+		<title>SIN - Sistema Informatizado de Notas</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	
+		<link rel="stylesheet" href="../assets/css/main.css">
+		<link rel="stylesheet" href="css/sin.css">
+		<link rel="stylesheet" href="../assets/css/theme_light.css" type="text/css" id="skin_color">
+		<link rel="stylesheet" href="../css/jquery.dataTables.css">
+		<link rel="stylesheet" href="../css/sweetalert2.css">
+		
+		<script src="../js/angular.min.js"></script>
+		<link rel="shortcut icon" href="../img/favicon.ico" />
+		<script type="text/javascript">
+			sessionStorage.setItem('id_escola', 1);
+		</script>
+	</head>
+	<body class="navigation-small" id="bodi" ng-app="sig_app" ng-controller="meu_controller">
+		<div class="navbar navbar-inverse navbar-fixed-top">
+			<div class="container">
+				
+				<header-left></header-left>
+				<div class="navbar-tools">
+					<!-- MENU direita-->
+					<header-menu usuario="{{usuario()}}"></header-menu>
+				</div>
+			</div>
+		</div>
+			<div class="main-navigation navbar-collapse collapse">
+				<div class="navigation-toggler navigation-small">
+					<i class="clip-chevron-left"></i>
+					<i class="clip-chevron-right"></i>
+				</div>
+				<ul class="main-navigation-menu">
+					<li ng-repeat="menu in menus">
+						<!-- Se nao tiver submenu -->
+						<a ng-href="{{menu.link}}" ng-hide="menu.submenu"><i class="{{menu.icone}}"></i>
+							<span class="title"> {{menu.nome}} </span><i class="icon-arrow" ng-show="menu.submenu"></i>
+						</a>
+						<!-- Se tiver submenu -->
+						<a href="" ng-show="menu.submenu"><i class="{{menu.icone}}"></i>
+							<span class="title"> {{menu.nome}} </span><i class="icon-arrow" ng-show="menu.submenu"></i>
+						</a>
+						<ul class="sub-menu">
+							<li ng-show="menu.submenu" ng-repeat="sub in menu.submenu">
+								<a href="{{sub.link}}">
+									<span class="title"> {{sub.titulo }}  </span>
+								</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+			<!-- start: PAGE -->
+			<div class="main-content" ng-controller="disciplinas_controller">
+				<!-- Titulo Sistema -->
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-12">
+							<ol class="breadcrumb"></ol>
+							<div class="page-header" style="margin-bottom: 2px; padding-bottom: 2px; margin-top:2px">
+									<onde-estou pagina='Disciplinas' icone="fa fa-graduation-cap"></onde-estou>
+									<titulo-sistema></titulo-sistema>
+							</div>
+						</div>
+					</div>
+					<div class="tabela">
+						<table id="tabela" class="tabela display" cellspacing="0" ng-init="lista_disciplinas()">
+							<thead>
+								<tr>
+									<th>Id</th>
+									<th>Disciplina</th>	
+								</tr>
+							</thead>
+						</table>
+						<loading ng-show="loading"></loading>
+					</div>
+					<hr>
+					<div class="row">
+						<div class="col-sm-12">
+							<button class="btn btn-primary" data-toggle="modal" data-target="#modal_cadastrar"><i class="fa fa-plus"></i> Cadastrar</button>
+							<button class="btn btn-warning" id="btn_editar" ng-click="monta_edit()" data-toggle="modal" data-target="#modal_editar" disabled><i class="fa fa-pencil"></i> Editar</button>
+							<button class="btn btn-bricky" id="btn_excluir" ng-click="excluir_disciplina()" disabled><i class="fa fa-trash-o"></i> Apagar</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- end: PAGE -->
+		</div>
+
+		<!--modal cadastrar-->
+		<div class="modal fade" id="modal_cadastrar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" ng-controller="disciplinas_controller">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		      	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        <h4 class="modal-title" id="myModalLabel"><i class="fa fa-graduation-cap"></i> Cadastrar Nova Disciplina</h4>
+		      </div>
+		      <div class="modal-body">
+		      		<div class="msg_erro rapida" id="cadastro_erro">
+		      			<div class="alert alert-warning">
+							<i class="fa fa-exclamation-triangle"></i>
+							<strong>Atenção!</strong> Preencha todos os campos!
+						</div>
+					</div>
+	          	    <div class="form-group">
+						<label class="col-sm-2 control-label" for="form-field-1">Nome da Disciplina</label>
+							<div class="col-sm-9">
+								<input type="text" placeholder="Nome" ng-model="nome" id="nome" class="form-control">
+							</div>
+				    </div><br>
+			  </div>	
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+		        <button type="button" class="btn btn-primary" ng-click="cadastra_disciplina()">Cadastrar <i class="fa fa-arrow-circle-right"></i></button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+
+		<!--modal editar-->
+		<div class="modal fade" id="modal_editar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" ng-controller="disciplinas_controller">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        <h4 class="modal-title" id="myModalLabel"><i class="fa fa-user"></i> Editar Disciplina</h4>
+		      </div>
+		      <div class="modal-body">
+		      		<div class="msg_erro rapida" id="edit_erro">
+		      			<div class="alert alert-warning">
+							<i class="fa fa-exclamation-triangle"></i>
+							<strong>Atenção!</strong> Preencha todos os campos!
+						</div>
+					</div>
+	          	    <input type="hidden" id="id_disciplina" disabled>
+	          	    <div class="form-group">
+						<label class="col-sm-2 control-label" for="form-field-1">Nome da Disciplina</label>
+							<div class="col-sm-9">
+								<input type="text" placeholder="Nome" ng-model="nome_edit" id="nome_edit" class="form-control">
+							</div>
+				    </div><br><br>
+			  </div>	
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+		        <button type="button" class="btn btn-primary" ng-click="editar_disciplina()">Salvar</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+
+		<altera-senha></altera-senha>
+		<footer-sesa></footer-sesa>
+		<script src="../assets/plugins/jQuery-lib/2.0.3/jquery.min.js"></script>
+		<script src="../assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+		<script src="../assets/plugins/blockUI/jquery.blockUI.js"></script>
+		<script src="../assets/plugins/iCheck/jquery.icheck.min.js"></script>
+		<script src="../assets/plugins/perfect-scrollbar/src/jquery.mousewheel.js"></script>
+		<script src="../assets/plugins/perfect-scrollbar/src/perfect-scrollbar.js"></script>
+		<script src="../assets/plugins/bootstrap-colorpalette/js/bootstrap-colorpalette.js"></script>
+		<script src="../assets/js/main.js"></script>
+
+		<script src="js/controller.js"></script>
+		<script src="js/disciplinas.js"></script>
+		<script src="js/funcoes.js"></script>
+		<script src="../js/jquery.dataTables.min.js"></script>
+
+		<script src="../js/sweetalert2.js"></script>
+		<script src="../js/senha.js"></script>
+		<script src="../js/jspdf.min.js"></script>                 
+		<script src="../js/jspdf.plugin.autotable.js"></script>	
+		<script src="../js/toPdf.js"></script>
+		<script>
+			$(document).ready(function () {
+		        Main.init();
+		    });
+
+		</script>
+	</body>
+</html>

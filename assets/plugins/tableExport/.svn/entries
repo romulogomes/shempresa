@@ -1,0 +1,55 @@
+8
+
+dir
+4344
+https://172.29.0.219/svn/sistemas/Aplicacoes/SIG/sig/assets/plugins/tableExport
+https://172.29.0.219/svn/sistemas
+
+
+
+2015-10-05T14:20:41.073591Z
+4337
+romulo.gomes
+
+
+svn:special svn:externals svn:needs-lock
+
+tableExport.js
+file
+
+
+
+
+2014-07-29T15:19:25.000000Z
+fbebb72c11cad55d6678b3b8c0c7ec7a
+2015-10-05T14:20:41.073591Z
+4337
+romulo.gomes
+
+jspdf
+dir
+
+jquery.base64.js
+file
+
+
+
+
+2014-07-29T15:19:24.000000Z
+52dcbf19b6c4cd512e2d3fe418923d6e
+2015-10-05T14:20:41.073591Z
+4337
+romulo.gomes
+
+html2canvas.js
+file
+
+
+
+
+2014-07-29T15:19:25.000000Z
+18c0f84aa35ec42d861902ddfc54e577
+2015-10-05T14:20:41.073591Z
+4337
+romulo.gomes
+

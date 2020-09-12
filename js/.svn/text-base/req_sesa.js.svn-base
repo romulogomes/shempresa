@@ -1,0 +1,166 @@
+function gera_evolucao_pagamento( ){
+
+	var barChartData = {
+        labels : ["2006"],
+        datasets : [
+            {
+                fillColor : "rgba(151,187,205,0.5)",
+                strokeColor : "rgba(151,187,205,0.8)",
+                highlightFill : "rgba(151,187,205,0.75)",
+                highlightStroke : "rgba(151,187,205,1)",
+                data : [16.222]
+            }
+        ]
+
+    }
+   	var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange=function(){
+        
+        if (xhr.readyState == 4 && xhr.status == 200) {
+          var ctx = document.getElementById("grafico").getContext("2d");
+	        window.myBar = new Chart(ctx).Bar(barChartData, {
+	            responsive : true
+	      });
+
+	      var dados = JSON.parse(xhr.responseText);
+	      for(var i = 1; i < dados.length; i++){
+		      var ano = dados[i]['ano'];
+		      var valor = dados[i]['vlrVerba'];
+          valor = getMoney(valor.toString());
+          valor = formatReal(parseFloat(valor));
+          console.log(typeof(valor));
+          console.log(valor);
+          valor = parseFloat(parseFloat(valor));
+          console.log(typeof(valor));
+          console.log(valor);
+		      myBar.addData([valor], ano);
+		   }
+	      //myBar.removeData();
+        }
+    }
+    url = "http://extranet.saude.ce.gov.br/sigews/webresources/entidade.sinteticodifascensao/";
+    xhr.open("GET", url, true);
+    xhr.send();
+}
+
+function gera_data( cargo, id ){
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange=function(){
+        if (xhr.readyState == 4 && xhr.status == 200) {
+          dados = JSON.parse(xhr.responseText);
+          var total = [];
+          var ano = [];
+          for (var i = 0; i < dados.length; i++) {
+            total[i] = dados[i].total;
+            ano[i] = dados[i].periodo;
+          }
+          grafico_evolucao_ses(total, ano, id);
+        }
+    }
+    url = "http://extranet.saude.ce.gov.br/sigews/webresources/entidade.cgtesevolucaogruposes/"+cargo;
+    xhr.open("GET", url, true);
+    xhr.send();
+}
+
+function grafico_evolucao_ses( dados, ano, id ){
+    var grafico = 'grafico'+id;
+    var canvas = 'canvas'+id;
+    document.getElementById(grafico).innerHTML = '<canvas id='+canvas+'></canvas>';
+
+  var lineChartData = {
+            labels : ["2003", "2004"],
+            datasets : [
+                {
+                    label: "My Second dataset",
+                    fillColor: "rgba(151,187,205,0.2)",
+                    strokeColor: "rgba(151,187,205,1)",
+                    pointColor: "rgba(151,187,205,1)",
+                    pointStrokeColor: "#fff",
+                    pointHighlightFill: "#fff",
+                    pointHighlightStroke: "rgba(151,187,205,1)",
+                    data: [2, 5]
+                },
+            ]
+        }
+           //document.getElementById('loading').style.display = "none";
+           var ctx = document.getElementById(canvas).getContext("2d");
+           window.myLine = new Chart(ctx).Line(lineChartData, {
+               responsive: true,
+               animationSteps : 10,
+           });
+
+          for(var i = 0; i < dados.length; i++){
+            myLine.addData([dados[i]], ano[i]);
+          }
+           
+
+          myLine.removeData();
+          myLine.removeData();
+}
+
+function graf_vale_alimentacao_qtd( grupo){
+
+  var barChartData = {
+        labels : ["2004"],
+        datasets : [
+            {   fillColor : "rgba(151,187,205,0.5)", strokeColor : "rgba(151,187,205,0.8)", highlightFill : "rgba(151,187,205,0.75)", 
+                highlightStroke : "rgba(151,187,205,1)",
+                data : [13]
+            }
+        ]
+
+    }
+
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange=function(){
+        if (xhr.readyState == 4 && xhr.status == 200) {
+          dados = JSON.parse(xhr.responseText);
+          console.log(dados);
+          var ctx = document.getElementById("grafico").getContext("2d");
+            window.myBar = new Chart(ctx).Bar(barChartData, {
+                responsive : true
+          });
+
+          for(var i = 0; i < dados.length; i++){
+            var valor = dados[i]["qtde"];
+            var ano = dados[i]["ano"];
+
+            myBar.addData([valor], ano);
+          }
+          myBar.removeData();
+          graf_vale_alimentacao_valor( dados, grupo)
+        }
+    }
+    url = "http://extranet.saude.ce.gov.br/sigews/webresources/entidade.vwcgetesfinvaleaanual/"+grupo;
+    xhr.open("GET", url, true);
+    xhr.send();
+}
+
+function graf_vale_alimentacao_valor( dados, grupo){
+
+  var barChartData = {
+        labels : ["2003"],
+        datasets : [
+            {
+                fillColor : "rgba(151,187,205,0.5)", strokeColor : "rgba(151,187,205,0.8)", highlightFill : "rgba(151,187,205,0.75)",
+                highlightStroke : "rgba(151,187,205,1)",
+                data : [19]
+            }
+        ]
+    }
+
+      var ctx = document.getElementById("grafico1").getContext("2d");
+        window.myBar = new Chart(ctx).Bar(barChartData, {
+            responsive : true
+      });
+
+      for(var i = 0; i < dados.length; i++){
+        var valor = dados[i]["valores"];
+        var ano = dados[i]["ano"];
+
+        myBar.addData([valor], ano);
+      }
+      myBar.removeData();
+        
+}
+    

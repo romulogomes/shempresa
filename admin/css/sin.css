@@ -1,0 +1,30 @@
+.input-invalido{
+	border-color: #a94442 !important;
+}
+
+.msg_erro{
+	color : red;
+	display: none;
+}
+
+.tabela{
+	font-size: 14px !important;
+	line-height: 20px;
+	font-family: 'Open+Sans', sans-serif !important;
+
+}
+
+@-webkit-keyframes slidein {
+  from {
+   opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.ani-body {
+  -webkit-animation-duration: 0.4s;
+  -webkit-animation-name: slidein;
+}
+

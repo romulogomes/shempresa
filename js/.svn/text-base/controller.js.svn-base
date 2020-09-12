@@ -1,0 +1,181 @@
+var inicio_mod = angular.module('sig_app', [])
+
+inicio_mod.directive('headerLeft', function() {
+    return {
+        restrict: 'E',
+        replace: true,
+        templateUrl: 'templates/headerLeft.html',    
+    }
+});
+inicio_mod.directive('headerMenu', function() {
+    return {
+        restrict: 'E',
+        replace: true,
+        templateUrl: 'templates/headerMenu.html',
+        scope: {
+        	usuario : '@'
+        }  
+    }
+});
+inicio_mod.directive('footerSesa', function() {
+    return {
+        restrict: 'E',
+        replace: true,
+        templateUrl: 'templates/footer.html',
+    }
+});
+inicio_mod.directive('tituloSistema', function() {
+    return {
+        restrict: 'E',
+        replace: true,
+        templateUrl: 'templates/tituloSistema.html',
+    }
+});
+inicio_mod.directive('ondeEstou', function() {
+    return {
+        restrict: 'E',
+        replace: true,
+        templateUrl: 'templates/ondeEstou.html',
+        scope: {
+        	pagina : '@',
+        	subpagina : '@',
+        	icone : '@'
+        }  
+    }
+});
+
+function meu_controller($scope, $http){
+
+	if(!localStorage.getItem('nome'))
+		location.href= "../index.html";
+
+	$scope.menus =  [ 
+					  {
+					    "nome" : "Dashboard",
+					    "icone" : "clip-home-3",
+					    "link" : "index.html",
+					  },
+					  {
+					    "nome" : "Civil Ativo",
+					    "icone" : "clip-users",
+ 					    "submenu" : [{ "titulo" : "ADO", "link" : "ado.html" }, 
+					    			 { "titulo" : "ANS", "link" : "ans.html" }, 
+					    			 { "titulo" : "ATS",  "link" : "ats.html" }, 
+					    			 { "titulo" : "SES",  "link" : "ses.html" }],
+					  }, 
+					  {
+					    "nome" : "Comissionados",
+					    "icone" : "clip-user-5",
+					    "link" : "comissionados.html",
+					  },
+					  {
+					    "nome" : "Total por Folha",
+					    "icone" : "clip-file-2",
+					    "link" : "total_folha.html",
+					  },
+					  {
+					    "nome" : "Evolução Grupo SES",
+					    "icone" : "clip-stats",
+					    "link" : "evolucao_ses.html",
+					  },
+					  {
+					    "nome" : "Situação Financeiro",
+					    "icone" : "clip-folder-2",
+					    "link" : "situacao_financeira.html",
+					  },
+					  {
+					    "nome" : "Vale Alimentação",
+					    "icone" : "clip-stack",
+					    "submenu" : [{ "titulo" : "ADO", "link" : "vale_ado.html" }, 
+					    			 { "titulo" : "ANS", "link" : "vale_ans.html" }, 
+					    			 { "titulo" : "ATS",  "link" : "vale_ats.html" }, 
+					    			 { "titulo" : "SES",  "link" : "vale_ses.html" }],
+					  },
+					  {
+					    "nome" : "Vacâncias",
+					    "icone" : "clip-folder-2",
+					    "submenu" : [{ "titulo" : "por Cargo", "link" : "vacancias.html" }, 
+					    			 { "titulo" : "por Lotação", "link" : "vacancias_lotacao.html" }], 
+					 
+					  }
+					];
+
+
+					
+
+		$scope.titulo = "SIG";
+		$scope.subtitulo = "Sistema de Informações Gerenciais";
+		
+		$scope.usuario = function(){
+			return localStorage.getItem('nome');
+		}
+
+		$scope.gera_dat = function(cargo, id){
+			$scope.loading = true;
+			gera_data(cargo, id);
+			$scope.loading = false;
+		}
+
+		$scope.cargos =  [ 
+					  {
+					    "nome" : "ASSISTENTE SOCIAL" }, 
+					    { "nome" : "BIOLOGO" },
+					    { "nome" : "CIRURGIAO DENTISTA" },
+					    { "nome" : "ENFERMEIRO" },
+					    { "nome" : "FARMACEUTICO" },
+					    { "nome" : "FISIOTERAPEUTA" },
+					    { "nome" : "FONOAUDIOLOGO" },
+					    { "nome" : "MEDICO" },
+					    { "nome" : "MEDICO VETERINARIO" },
+					    { "nome" : "NUTRICIONISTA" },
+					    { "nome" : "PSICOLOGO" },
+					    { "nome" : "SANITARISTA" },
+					    { "nome" : "TECNOLOGO SANEAMENTO AMBIENTAL" },
+					    { "nome" : "TERAPEUTA OCUPACIONAL" },
+					   
+					  ];
+
+		$scope.gera_comparativo = function(){
+			$scope.comparativo = true;
+		}
+
+		$scope.listar_cargos = function(){
+			var url = 'http://extranet.saude.ce.gov.br/sigews/webresources/vacancias/';
+			$http.get(url).
+		  	success(function(data, status, headers, config) {
+		  		$scope.cargos_vac = [];
+		  		var cargos =[];
+		  		for(var i = 0; i < data.length; i++){
+		  			 if(cargos.indexOf(data[i]['cargo']) === -1){
+		  			 	cargos.push(data[i]['cargo']);
+		  			 }
+		  		}
+		  		for(var i = 0; i < cargos.length; i++){
+		  			$scope.cargos_vac.push({"nome": cargos[i]});
+		  		}
+		  }).
+		  error(function() {
+		  		alert('Não foi possivel carregar os Dados');
+		  });
+		}
+
+		$scope.listar_lotacao = function(){
+			var url = 'http://extranet.saude.ce.gov.br/sigews/webresources/vacancias/';
+			$http.get(url).
+		  	success(function(data) {
+		  		$scope.cargos_vac = [];
+		  		var cargos =[];
+		  		for(var i = 0; i < data.length; i++){
+		  			 if(cargos.indexOf(data[i]['lotacao']) === -1){
+		  			 	cargos.push(data[i]['lotacao']);
+		  			 }
+		  		}
+		  		for(var i = 0; i < cargos.length; i++){
+		  			$scope.cargos_vac.push({"nome": cargos[i]});
+		  		}
+		  }).
+		  error(function() {
+		  		alert('Não foi possivel carregar os Dados');
+		  });
+		}
+}

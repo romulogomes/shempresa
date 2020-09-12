@@ -1,0 +1,31 @@
+8
+
+dir
+4344
+https://172.29.0.219/svn/sistemas/Aplicacoes/SIG/sig/assets/plugins/tableExport/jspdf
+https://172.29.0.219/svn/sistemas
+
+
+
+2015-10-05T14:20:41.073591Z
+4337
+romulo.gomes
+
+
+svn:special svn:externals svn:needs-lock
+
+jspdf.js
+file
+
+
+
+
+2014-07-29T15:19:26.000000Z
+cf62ec36db4850a1bf1a01ef8400f8ea
+2015-10-05T14:20:41.073591Z
+4337
+romulo.gomes
+
+libs
+dir
+

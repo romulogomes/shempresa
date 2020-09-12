@@ -1,0 +1,40 @@
+8
+
+dir
+4344
+https://172.29.0.219/svn/sistemas/Aplicacoes/SIG/sig/assets/plugins/summernote/build
+https://172.29.0.219/svn/sistemas
+
+
+
+2015-10-05T14:20:41.073591Z
+4337
+romulo.gomes
+
+
+svn:special svn:externals svn:needs-lock
+
+summernote.css
+file
+
+
+
+
+2014-02-07T02:26:03.000000Z
+c7a084908a1821f40f85dc353c6dc184
+2015-10-05T14:20:41.073591Z
+4337
+romulo.gomes
+
+summernote.min.js
+file
+
+
+
+
+2014-02-07T02:26:03.000000Z
+f2b4a7b72d15660f70d9a6861685df7d
+2015-10-05T14:20:41.073591Z
+4337
+romulo.gomes
+

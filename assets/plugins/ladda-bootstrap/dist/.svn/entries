@@ -1,0 +1,52 @@
+8
+
+dir
+4344
+https://172.29.0.219/svn/sistemas/Aplicacoes/SIG/sig/assets/plugins/ladda-bootstrap/dist
+https://172.29.0.219/svn/sistemas
+
+
+
+2015-10-05T14:20:41.073591Z
+4337
+romulo.gomes
+
+
+svn:special svn:externals svn:needs-lock
+
+ladda.min.js
+file
+
+
+
+
+2014-02-07T02:25:37.000000Z
+812bd4518551eaadab442728d353ce7b
+2015-10-05T14:20:41.073591Z
+4337
+romulo.gomes
+
+ladda-themeless.min.css
+file
+
+
+
+
+2014-02-07T02:25:36.000000Z
+d62ff0b3864ca51076bfa0a1f1f5c59d
+2015-10-05T14:20:41.073591Z
+4337
+romulo.gomes
+
+spin.min.js
+file
+
+
+
+
+2014-02-07T02:25:40.000000Z
+4dde028b681fd2b872005495f1d7d441
+2015-10-05T14:20:41.073591Z
+4337
+romulo.gomes
+

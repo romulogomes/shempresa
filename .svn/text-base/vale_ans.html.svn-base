@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+		<title>SIG - Sistema de Informação Gerenciais</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	
+		<link rel="stylesheet" href="assets/css/main.css">
+		<link rel="stylesheet" href="assets/css/theme_light.css" type="text/css" id="skin_color">
+		<link rel="shortcut icon" href="img/favicon.ico" />
+		
+		<script src="js/angular.min.js"></script>
+		<script src="js/req_sesa.js"></script>
+		
+	</head>
+	<body class="navigation-small" id="bodi" ng-app="sig_app" ng-controller="meu_controller">
+		<div class="navbar navbar-inverse navbar-fixed-top">
+			<div class="container">
+				
+				<header-left></header-left>
+
+				<div class="navbar-tools">
+					<!-- MENU direita-->
+					<header-menu usuario="{{usuario()}}"></header-menu>
+				</div>
+			</div>
+		</div>
+
+			<div class="main-navigation navbar-collapse collapse">
+				<div class="navigation-toggler navigation-small">
+					<i class="clip-chevron-left"></i>
+					<i class="clip-chevron-right"></i>
+				</div>
+				
+				<ul class="main-navigation-menu">
+					<!--Menu-->
+					<li ng-repeat="menu in menus">
+						<!-- Se nao tiver submenu -->
+						<a ng-href="{{menu.link}}" ng-hide="menu.submenu"><i class="{{menu.icone}}"></i>
+							<span class="title"> {{menu.nome}} </span><i class="icon-arrow" ng-show="menu.submenu"></i>
+						</a>
+						<!-- Se tiver submenu -->
+						<a href="" ng-show="menu.submenu"><i class="{{menu.icone}}"></i>
+							<span class="title"> {{menu.nome}} </span><i class="icon-arrow" ng-show="menu.submenu"></i>
+						</a>
+						<ul class="sub-menu">
+							<li ng-show="menu.submenu" ng-repeat="sub in menu.submenu">
+								<a href="{{sub.link}}">
+									<span class="title"> {{sub.titulo }}  </span>
+								</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+			<!-- start: PAGE -->
+			<div class="main-content">
+
+				<!-- Titulo Sistema -->
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-12">
+							<ol class="breadcrumb"></ol>
+							<div class="page-header">
+								
+								<onde-estou pagina='Gastos com Vale Alimentação' subpagina="- ANS" icone="clip-stack"></onde-estou>
+								<titulo-sistema></titulo-sistema>
+							</div>
+						</div>
+					</div>
+						<div class="row">
+							<!-- Grafico 2 -->
+							<div class="col-sm-6">
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										<i class="clip-stack"></i>
+										Quantidade 
+									<div class="panel-tools">
+										<a class="btn btn-xs btn-link panel-collapse collapses" href="#">
+										</a>
+										
+										
+									</div>
+								</div>
+								<div class="panel-body">
+										<div style="width: 90%">
+							                <canvas id="grafico"></canvas>
+							            </div>
+								</div>
+							</div>
+						  </div>
+  							<div class="col-sm-6">
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										<i class="clip-stack"></i>
+										Valores (R$)
+										<div class="panel-tools">
+											<a class="btn btn-xs btn-link panel-collapse collapses" href="#">
+											</a>
+											
+											
+										</div>
+									</div>
+									<div class="panel-body">
+										<div style="width: 90%">
+								               <canvas id="grafico1"></canvas>
+								         </div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+		<footer-sesa></footer-sesa>
+		
+		<script src="assets/plugins/jQuery-lib/2.0.3/jquery.min.js"></script>
+		<script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+		<script src="assets/plugins/iCheck/jquery.icheck.min.js"></script>
+		<script src="assets/plugins/perfect-scrollbar/src/jquery.mousewheel.js"></script>
+		<script src="assets/plugins/perfect-scrollbar/src/perfect-scrollbar.js"></script>
+		<script src="assets/plugins/bootstrap-colorpalette/js/bootstrap-colorpalette.js"></script>
+		<script src="assets/js/main.js"></script>
+
+		<script src="js/Chart.min.js"></script>
+		<script src="js/modernizr.js"></script>
+		<script src="js/controller.js"></script>
+		<script>
+			jQuery(document).ready(function() {
+				Main.init();
+			});
+			graf_vale_alimentacao_qtd('ANS');
+
+		</script>
+
+	</body>
+</html>

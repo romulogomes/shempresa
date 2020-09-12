@@ -1,0 +1,34 @@
+<div id="AltSenha" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+  
+    <form role="form" novalidate id="formAltSenha" name="formAltSenha" ng-controller="altSenhaCtrl">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Alterar Senha</h4>
+      </div>
+      <div class="modal-body">
+
+          <div class="form-group">
+            <input type="password" class="form-control" placeholder="Senha" ng-model="usuario.senha" ng-required = "true" name="senha">
+            <div class="text-danger" role="alert" ng-show="formAltSenha.senha.$error.required && formAltSenha.senha.$dirty">Informe a senha atual</div>
+          </div>
+          <div class="form-group">
+            <input type="password" class="form-control" placeholder="Nova Senha" ng-model="usuario.novaSenha" ng-required = "true" name="novaSenha" ng-minlength="6">
+            <div class="text-danger" role="alert" ng-show="formAltSenha.novaSenha.$error.minlength">A nova senha deve conter no mínimo 6 caracteres</div>
+          </div>
+          <div class="form-group">
+            <input type="password" class="form-control" placeholder="Confirmar nova senha" name="confirmnovasenha" ng-model="usuario.confirmnovasenha" ng-required ="true"/>
+            <div class="text-danger" role="alert" ng-show="usuario.novaSenha != usuario.confirmnovasenha && formAltSenha.novaSenha.$dirty && formAltSenha.confirmnovasenha.$dirty">As senhas não coincidem</div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="limpar()">Cancelar</button>
+            <button type="submit" class="btn btn-success" ng-disabled="formAltSenha.$invalid || usuario.novaSenha != usuario.confirmnovasenha" ng-click="alterar()">Alterar</button>
+          </div>
+        </form>
+      </div>
+      
+    </div>
+  </div>
+</div>

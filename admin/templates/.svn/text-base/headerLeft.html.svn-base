@@ -1,0 +1,12 @@
+<div class="navbar-header">
+	<!-- start: RESPONSIVE MENU TOGGLER -->
+	<button data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle" type="button">
+		<span class="clip-list-2"></span>
+	</button>
+		<!-- end: RESPONSIVE MENU TOGGLER -->
+		<!-- start: LOGO -->
+	<a class="navbar-brand" href="index.html">
+		<img src="img/logo.png"> 
+	</a>
+	<!-- end: LOGO -->
+</div>

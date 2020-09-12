@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="pt">
+    <head>
+		<title>SIN - Sistema Informatizado de Notas</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	
+		<link rel="stylesheet" href="../assets/css/main.css">
+		<link rel="stylesheet" href="../assets/css/theme_light.css" type="text/css" id="skin_color">
+		<link rel="stylesheet" href="../css/jquery.dataTables.css">
+		
+		<script src="../js/angular.min.js"></script>
+		<link rel="shortcut icon" href="../img/favicon.ico" />
+	</head>
+	<body class="navigation-small" id="bodi" ng-app="sig_app" ng-controller="meu_controller">
+		<div class="navbar navbar-inverse navbar-fixed-top">
+			<div class="container">
+				
+				<header-left></header-left>
+
+				<div class="navbar-tools">
+					<!-- MENU direita-->
+					<header-menu usuario="{{usuario()}}"></header-menu>
+				</div>
+			</div>
+		</div>
+
+			<div class="main-navigation navbar-collapse collapse">
+				<div class="navigation-toggler navigation-small">
+					<i class="clip-chevron-left"></i>
+					<i class="clip-chevron-right"></i>
+				</div>
+				
+				<ul class="main-navigation-menu">
+					<li ng-repeat="menu in menus">
+						<!-- Se nao tiver submenu -->
+						<a ng-href="{{menu.link}}" ng-hide="menu.submenu"><i class="{{menu.icone}}"></i>
+							<span class="title"> {{menu.nome}} </span><i class="icon-arrow" ng-show="menu.submenu"></i>
+						</a>
+						<!-- Se tiver submenu -->
+						<a href="" ng-show="menu.submenu"><i class="{{menu.icone}}"></i>
+							<span class="title"> {{menu.nome}} </span><i class="icon-arrow" ng-show="menu.submenu"></i>
+						</a>
+						<ul class="sub-menu">
+							<li ng-show="menu.submenu" ng-repeat="sub in menu.submenu">
+								<a href="{{sub.link}}">
+									<span class="title"> {{sub.titulo }}  </span>
+								</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+			<!-- start: PAGE -->
+			<div class="main-content" ng-controller="gestores_controller">
+
+				<!-- Titulo Sistema -->
+				<div class="container" style="height: 500px !important;">
+					<div class="row">
+						<div class="col-sm-12">
+							<ol class="breadcrumb"></ol>
+							<div class="page-header" style="margin-bottom: 2px; padding-bottom: 2px; margin-top:2px">
+									<onde-estou pagina='Boletim' icone="clip-file-2"></onde-estou>
+									<titulo-sistema></titulo-sistema>
+							</div>
+						</div>
+					</div>
+					{{teste}}
+						
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="page-header">
+								<div class="titulo_right">
+									<div class="col-md-2">
+										<a onclick="request()" class="pull-left btn btn-bricky"  style="margin-top:10px;"> 
+											Imprimir
+											<i class="clip-file-pdf"></i>											
+										</a>
+									</div>
+									<!--h3 id="total"></i> Situação Final </h3-->
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- end: PAGE -->
+		</div>
+		<altera-senha></altera-senha>
+		<footer-sesa></footer-sesa>
+		
+		<script src="../assets/plugins/jQuery-lib/2.0.3/jquery.min.js"></script>
+		<script src="../assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+		<script src="../assets/plugins/blockUI/jquery.blockUI.js"></script>
+		<script src="../assets/plugins/iCheck/jquery.icheck.min.js"></script>
+		<script src="../assets/plugins/perfect-scrollbar/src/jquery.mousewheel.js"></script>
+		<script src="../assets/plugins/perfect-scrollbar/src/perfect-scrollbar.js"></script>
+		<script src="../assets/plugins/bootstrap-colorpalette/js/bootstrap-colorpalette.js"></script>
+		<script src="../assets/js/main.js"></script>
+
+		<script src="../js/jquery.dataTables.min.js"></script>
+		<script src="../js/lista.js"></script>
+		<script src="js/controller.js"></script>
+		<script src="js/gestores.js"></script>
+		<script src="../js/senha.js"></script>
+
+		<script src="../js/jspdf.min.js"></script>                 
+		<script src="../js/jspdf.plugin.autotable.js"></script>	
+		<script src="../js/toPdf.js"></script>
+		<script>
+			$(document).ready(function () {
+				$('#tabela_total_folha').DataTable({
+		             "columns": [
+		                { "width": "40%" },
+		                { "width": "15%" },
+		                { "width": "15%" },
+		                { "width": "15%" },
+		                { "width": "15%" },
+		              ],
+		             "info": false,
+		             paging: false,
+		        });
+         	    //total_por_folha();
+		        $('#tabela_total_folha tbody').on('click', 'tr', function () {
+		        if ($(this).hasClass('selected')) {
+		            $(this).removeClass('selected');
+		        }
+		        else {
+		            table = $('#tabela_total_folha').DataTable();
+		            table.$('tr.selected').removeClass('selected');
+		            $(this).addClass('selected');
+		        } });
+		        Main.init();
+		    });
+
+		     /* Gerar PDF*/
+			function request(){                              /* Requisição Json*/
+		        var dados = [{
+		        	   "disciplina" : "Português",
+		        	   "bimestre1" : "9",
+		        	   "bimestre2" : "6,5",
+		        	   "bimestre3" : "-",
+		        	   "bimestre4" : "-",
+		        },
+		        {
+		        	"disciplina" : "Matemática",
+		        	   "bimestre1" : "7",
+		        	   "bimestre2" : "8",
+		        	   "bimestre3" : "-",
+		        	   "bimestre4" : "-"		
+		        },
+		        {
+		        	"disciplina" : "História",
+		        	   "bimestre1" : "8,5",
+		        	   "bimestre2" : "6",
+		        	   "bimestre3" : "-",
+		        	   "bimestre4" : "-"		
+		        },
+		        {
+		        	"disciplina" : "Geografia",
+		        	   "bimestre1" : "7",
+		        	   "bimestre2" : "8",
+		        	   "bimestre3" : "-",
+		        	   "bimestre4" : "-"		
+		        },
+		        {
+		        	"disciplina" : "Ciências",
+		        	   "bimestre1" : "8,5",
+		        	   "bimestre2" : "7",
+		        	   "bimestre3" : "-",
+		        	   "bimestre4" : "-"		
+		        },
+		        {
+		        	"disciplina" : "Educação Física",
+		        	   "bimestre1" : "10",
+		        	   "bimestre2" : "9,5",
+		        	   "bimestre3" : "-",
+		        	   "bimestre4" : "-"		
+		        },
+		        {
+		        	"disciplina" : "Ensino Religioso",
+		        	   "bimestre1" : "8,5",
+		        	   "bimestre2" : "7,5",
+		        	   "bimestre3" : "-",
+		        	   "bimestre4" : "-"		
+		        },
+		        {
+		        	"disciplina" : "Artes",
+		        	   "bimestre1" : "9,0",
+		        	   "bimestre2" : "9,5",
+		        	   "bimestre3" : "-",
+		        	   "bimestre4" : "-"		
+		        }
+		        ];
+		        monta_pdf(dados);			           
+			}
+
+			function monta_pdf( dados ){
+				var columns = [
+				    {title: "Disciplinas", key: "disciplina"},
+				    {title: "1º Bimestre", key: "bimestre1"},
+				    {title: "2º Bimestre", key: "bimestre2"},
+				    {title: "3º Bimestre", key: "bimestre3"},
+				    {title: "4º Bimestre", key: "bimestre4"}
+				    ];
+			    var documento = gerarPDF(dados, columns, "", "Aluno: Rômulo Gomes Matos Braga", "Boletim", "p", "","total");
+			    	/* dados, columns, autor, solicitante, titulo, orientacao p ou L, limitperpage */
+			    documento.save("boletim.pdf");
+
+			} /* Fim PDF*/
+		</script>
+	</body>
+</html>

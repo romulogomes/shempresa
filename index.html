@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+		<title>SIG - Sistema de Informação Gerenciais</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	
+		<link rel="stylesheet" href="assets/css/main.css">
+		<link rel="stylesheet" href="assets/css/theme_light.css" type="text/css" id="skin_color">
+		<link rel="stylesheet" href="css/jquery.dataTables.css">
+		
+		<script src="js/angular.min.js"></script>
+		<link rel="shortcut icon" href="img/favicon.ico" />
+
+	</head>
+	<body class="navigation-small" id="bodi" ng-app="sig_app" ng-controller="meu_controller">
+		<div class="navbar navbar-inverse navbar-fixed-top">
+			<div class="container">
+				
+				<header-left></header-left>
+
+				<div class="navbar-tools">
+					<!-- MENU direita-->
+					<header-menu usuario="{{usuario()}}"></header-menu>
+				</div>
+			</div>
+		</div>
+			<div class="main-navigation navbar-collapse collapse">
+				<div class="navigation-toggler navigation-small">
+					<i class="clip-chevron-left"></i>
+					<i class="clip-chevron-right"></i>
+				</div>
+				
+				<ul class="main-navigation-menu">
+					<!--Menu-->
+					<li ng-repeat="menu in menus">
+						<!-- Se nao tiver submenu -->
+						<a ng-href="{{menu.link}}" ng-hide="menu.submenu"><i class="{{menu.icone}}"></i>
+							<span class="title"> {{menu.nome}} </span><i class="icon-arrow" ng-show="menu.submenu"></i>
+						</a>
+						<!-- Se tiver submenu -->
+						<a href="" ng-show="menu.submenu" style="cursor:default"><i class="{{menu.icone}}"></i>
+							<span class="title"> {{menu.nome}} </span><i class="icon-arrow" ng-show="menu.submenu"></i>
+						</a>
+						<ul class="sub-menu">
+							<li ng-show="menu.submenu" ng-repeat="sub in menu.submenu">
+								<a href="{{sub.link}}">
+									<span class="title"> {{sub.titulo }}  </span>
+								</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+			<!-- start: PAGE -->
+			<div class="main-content">
+				<!-- Titulo Sistema -->
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-12">
+							<ol class="breadcrumb"></ol>
+							<div class="page-header">
+									<onde-estou pagina="Boletim" icone="clip-file-2"></onde-estou>
+									<titulo-sistema></titulo-sistema>
+							</div>
+						</div>
+					</div>
+
+					<!-- Conteudo -->
+					<div class="tabela">
+						<table id="tabela_total_folha" class="tabela display" cellspacing="0">
+							<thead>
+								<tr>
+									<th><center>Folha</center></th>
+									<th><center>Servidores (Qtd)</center></th>
+									<th><center>Total (R$)</center></th>	
+								</tr>
+							</thead>
+						</table>
+						<div id="loading">
+							<div id="loading_centraliza">
+								<img src="img/ajax_loading.gif">
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="page-header">
+								<div class="titulo_right">
+									<div class="col-md-2">
+										<a onclick="request()" class="pull-left btn btn-bricky"  style="margin-top:10px;"> 
+											Gerar PDF
+											<i class="clip-file-pdf"></i>											
+										</a>
+									</div>
+									<h3 id="total"></i> Total: </h3>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+					<div class="row">
+						<div class="col-sm-7">
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<i class="clip-stats"></i>
+										Gastos Anual com Pessoal (em milhões R$)
+									<div class="panel-tools">
+										<a class="btn btn-xs btn-link panel-collapse collapses" href="#">
+										</a>
+										
+									</div>
+								</div>
+								<div class="panel-body">
+									<div class="flot-medium-container">
+										<div style="width: 90%; padding-top: 20px;" >
+							                <canvas id="grafico2"></canvas>
+							            </div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-5">
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<i class="clip-users-2"></i>
+									Situação Financeiro
+									<div class="panel-tools">
+										<a class="btn btn-xs btn-link panel-collapse collapses" href="#">
+										</a>
+									</div>
+								</div>
+								<div class="panel-body panel-scroll">
+									<div class="tabela">
+										<table id="tabela_boletim" class="tabela display" cellspacing="0">
+											<thead>
+												<tr>
+													<th>Situação</th>
+													<th>Servidores</th>
+													<th>Total (R$)</th>	
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<th>Situação</th>
+													<th>Servidores</th>
+													<th>Total (R$)</th>	
+												</tr>
+											</tbody>
+										</table>
+										
+									</div>
+									<h5 id="total" style="float: right"><b>Total:</b></h5>
+								</div>
+							</div>
+						</div>
+						
+					</div>
+					
+				</div>
+			</div>
+			<altera-senha></altera-senha>
+			<!-- end: PAGE -->
+		</div>
+
+		<footer-sesa></footer-sesa>
+		
+		<script src="assets/plugins/jQuery-lib/2.0.3/jquery.min.js"></script>
+		<script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+		<script src="assets/plugins/perfect-scrollbar/src/jquery.mousewheel.js"></script>
+		<script src="assets/plugins/perfect-scrollbar/src/perfect-scrollbar.js"></script>
+		<script src="assets/plugins/bootstrap-colorpalette/js/bootstrap-colorpalette.js"></script>
+		<script src="assets/js/main.js"></script>
+
+		<script src="js/Chart.min.js"></script>
+		<script src="js/jquery.dataTables.min.js"></script>
+		<script src="js/req_sesa.js"></script>
+		<script src="js/lista.js"></script>
+		<script src="js/controller.js"></script>
+		<script src="js/senha.js"></script>
+
+		<script>
+			$('#tabela_boletim').DataTable();
+			jQuery(document).ready(function() {
+				Main.init();
+			});
+			
+			/*$('#tabela tbody').on('click', 'tr', function () {
+		        if ($(this).hasClass('selected')) {
+		            $(this).removeClass('selected');
+		        }
+		        else {
+		            table = $('#tabela').DataTable();
+		            table.$('tr.selected').removeClass('selected');
+		            $(this).addClass('selected');
+		        } });
+		    */
+		</script>
+		
+	</body>
+</html>

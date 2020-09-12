@@ -1,0 +1,208 @@
+8
+
+dir
+4344
+https://172.29.0.219/svn/sistemas/Aplicacoes/SIG/sig/assets/plugins
+https://172.29.0.219/svn/sistemas
+
+
+
+2015-10-05T14:40:26.536892Z
+4344
+romulo.gomes
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+c0ce3e1a-fe9b-4afb-a386-b57bba53af76
+
+ladda-bootstrap
+dir
+
+rainyday
+dir
+
+jQuery-lib
+dir
+
+jquery-ui-touch-punch
+dir
+
+iCheck
+dir
+
+jquery-cookie
+dir
+
+bootstrap-colorpicker
+dir
+
+css3-animation
+dir
+
+bootstrap-hover-dropdown
+dir
+
+tableExport
+dir
+
+jQRangeSlider
+dir
+
+nestable
+dir
+
+moment
+dir
+
+dropzone
+dir
+
+jQuery-Smart-Wizard
+dir
+
+jquery-address
+dir
+
+jquery-inputlimiter
+dir
+
+bootstrap-daterangepicker
+dir
+
+font-awesome
+dir
+
+ckeditor
+dir
+
+flot
+dir
+
+jQuery-Knob
+dir
+
+less
+dir
+
+bootstrap-timepicker
+dir
+
+perfect-scrollbar
+dir
+
+jquery-mockjax
+dir
+
+datepicker
+dir
+
+bootstrap
+dir
+
+jquery-maskmoney
+dir
+
+gritter
+dir
+
+bootstrap-social-buttons
+dir
+
+bootstrap-datepicker
+dir
+
+colorbox
+dir
+
+jquery-easy-pie-chart
+dir
+
+blockUI
+dir
+
+jquery-ui
+dir
+
+jquery.pulsate
+dir
+
+fullcalendar
+dir
+
+summernote
+dir
+
+bootstrap-paginator
+dir
+
+bootstrap-fileupload
+dir
+
+select2
+dir
+
+typeaheadjs
+dir
+
+jquery.maskedinput
+dir
+
+autosize
+dir
+
+DataTables
+dir
+
+bootstrap-datetimepicker
+dir
+
+wysihtml5
+dir
+
+jquery.sparkline
+dir
+
+gmaps
+dir
+
+bootstrap-modal
+dir
+
+jquery-validation
+dir
+
+bootstrap-colorpalette
+dir
+
+jQuery-Tags-Input
+dir
+
+dynatree
+dir
+
+bootstrap-switch
+dir
+
+bootbox
+dir
+
+Jcrop
+dir
+
+jQuery-File-Upload
+dir
+
+x-editable
+dir
+
