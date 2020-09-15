@@ -7,7 +7,7 @@ function MenuCtrl ($scope, $rootScope, $http){
 					  },
 					  {
 					    "nome" : "Funcionários",
-					    "icone": "clip-file-2",
+					    "icone": "clip-user-3",
 					    "link" : "funcionarios.html",
 					  },
 					];			

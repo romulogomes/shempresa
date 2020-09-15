@@ -12,6 +12,7 @@ function FuncionariosCtrl ($scope, $rootScope, $http){
 	}
 
 	$scope.lista_solicitacoes = function(){ 
+    $scope.loading = true;
     var t = $('#tabela').DataTable({
       "columns": [
           { "width": "5%" },
@@ -39,8 +40,9 @@ function FuncionariosCtrl ($scope, $rootScope, $http){
             dado.email,
             dado.banco,
           ]).draw());
+          $scope.loading = false;
       }, function errorCallback(response) {
-        // alert('Não foi possivel carregar os Dados');
+        alert('Não foi possivel carregar os Dados');
       });
     
 

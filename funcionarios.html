@@ -84,18 +84,19 @@
 								</tr>
 							</thead>
 						</table>
-						<!--div id="loading">
+						<div id="loading" ng-show="loading">
 							<div id="loading_centraliza">
 								<img src="img/ajax_loading.gif">
 							</div>
-						</div-->
+						</div>
 					</div>
 					<div class="col-sm-12" style="margin-top: 5rem;">
 						<div class="row">
 							<!-- FIXME ROmulo BOtoes -->
 							<div class="col-sm-12">
-								<button class="btn btn-success" id="btn_editar" data-toggle="modal" data-target="#modal_cadastrar" disabled><i class="fa fa-check-circle"></i> Confirmar</button>
-								<button class="btn btn-bricky" id="btn_excluir" ng-click="excluir_disciplina()" disabled><i class="fa fa-trash-o"></i> Recusar</button>
+									<button class="btn btn-primary" data-toggle="modal" data-target="#modal_cadastrar"><i class="fa fa-plus"></i> Cadastrar</button>
+									<button class="btn btn-warning" id="btn_editar" ng-click="monta_edit()" data-toggle="modal" data-target="#modal_editar" disabled><i class="fa fa-pencil"></i> Editar</button>
+									<button class="btn btn-bricky" id="btn_excluir" ng-click="excluir_professor()" disabled><i class="fa fa-trash-o"></i> Apagar</button>
 							</div>
 						</div>
 					</div>
