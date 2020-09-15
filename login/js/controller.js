@@ -1,8 +1,12 @@
 function meucontroller($scope, $http){
 	
 	$scope.envia = function(){
-		sessionStorage.setItem('nome' , 'Romulo Gomes');
-		location.href="../solicitacoes.html";
+		if($scope.usuario == "farmaciadojauro" && $scope.senha == "jesus"){
+			sessionStorage.setItem('nome' , 'Farmácia do Jauro');
+			location.href="../solicitacoes.html";
+		} else {
+			alert("Usuário e/ou Senha incorreta");
+		}
   }
 }
 
