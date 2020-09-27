@@ -1,3 +1,4 @@
+<!-- FIXME Romulo Empregado || Funcionários  -->
 <!DOCTYPE html>
 <html lang="pt">
     <head>
@@ -10,6 +11,7 @@
 		<link rel="stylesheet" href="assets/css/main.css">
 		<link rel="stylesheet" href="assets/css/theme_light.css" type="text/css" id="skin_color">
 		<link rel="stylesheet" href="css/jquery.dataTables.css">
+		<link rel="stylesheet" href="css/sweetalert2.css">
 		<link rel="stylesheet" type="text/css" href="css/sin.css">
 	
 		<script src="js/angular.min.js"></script>
@@ -94,15 +96,73 @@
 						<div class="row">
 							<!-- FIXME ROmulo BOtoes -->
 							<div class="col-sm-12">
-									<button class="btn btn-primary" data-toggle="modal" data-target="#modal_cadastrar"><i class="fa fa-plus"></i> Cadastrar</button>
+									<button class="btn btn-primary" data-toggle="modal" data-target="#modal"><i class="fa fa-plus"></i> Cadastrar</button>
 									<button class="btn btn-warning" id="btn_editar" ng-click="monta_edit()" data-toggle="modal" data-target="#modal_editar" disabled><i class="fa fa-pencil"></i> Editar</button>
-									<button class="btn btn-bricky" id="btn_excluir" ng-click="excluir_professor()" disabled><i class="fa fa-trash-o"></i> Apagar</button>
+									<button class="btn btn-bricky" id="btn_excluir" ng-click="excluir()" disabled><i class="fa fa-trash-o"></i> Apagar</button>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 			<!-- end: PAGE -->
+
+			<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" ng-controller="FuncionariosCtrl">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title" id="myModalLabel"><i class="fa fa-user"></i> Funcionários</h4>
+					</div>
+					<div class="modal-body">
+							<div class="msg_erro rapida" id="edit_erro">
+								<div class="alert alert-warning">
+									<i class="fa fa-exclamation-triangle"></i>
+									<strong>Atenção!</strong> Preencha todos os campos!
+								</div>
+							</div>
+							<input type="hidden" id="id_professor" disabled>
+							<div class="form-group">
+								<label class="col-sm-3 control-label" for="form-field-1">Nome</label>
+								<div class="col-sm-9">
+									<input type="text" placeholder="Nome" ng-model="empregado.nome" id="nome" class="form-control">
+								</div>
+							</div><br><br>
+							<div class="form-group">
+								<label class="col-sm-3 control-label" for="form-field-1">Data de Nascimento</label>
+								<div class="col-sm-9">
+									<input type="date" placeholder="Endereço" ng-model="empregado.data_de_nascimento" id="data_de_nascimento" class="form-control">
+								</div>
+							</div><br><br>
+							<div class="form-group">
+								<label class="col-sm-3 control-label" for="form-field-1">CPF</label>
+								<div class="col-sm-9">
+									<input type="text" placeholder="CPF" ng-model="empregado.cpf" id="cpf" class="form-control">
+								</div>
+							</div><br>
+							<!-- FIXME Romulo FORMAT SALÁRIO -->
+							<!-- FIXME Romulo adicionar informações bancarias-->
+							<div class="form-group">
+								<label class="col-sm-3 control-label" for="form-field-1">Salário</label>
+								<div class="col-sm-9">
+									<input type="text" placeholder="Salário" ng-model="empregado.salario" id="salario" class="form-control">
+								</div>
+							</div><br>
+							<!-- <div class="form-group">
+								<label class="col-sm-3 control-label" for="form-field-1">Telefone</label>
+								<div class="col-sm-9">
+									<input type="number" placeholder="(85)9999999" id="telefone_edit" class="form-control" required>
+								</div>
+							</div> -->
+					</div>	
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+						<button type="button" class="btn btn-primary" ng-click="salvar()">Salvar</button>
+					</div>
+					</div>
+				</div>
+			</div>
+
+
 		</div>
 		<altera-senha></altera-senha>
 		<footer-sesa></footer-sesa>
@@ -123,7 +183,8 @@
 		<script src="js/controller/menu.js"></script>
 		<script src="js/senha.js"></script>
 		<script src="js/funcoes.js"></script>
-
+		<script src="js/env/env.js"></script>
+		<script src="js/sweetalert2.js"></script>
 		<script src="js/jspdf.min.js"></script>                 
 		<script src="js/jspdf.plugin.autotable.js"></script>	
 		<script src="js/toPdf.js"></script>
