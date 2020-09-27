@@ -48,36 +48,23 @@ function FuncionariosCtrl ($scope, $rootScope, $http){
 
     instancia_selecao('#tabela');
 	}
-  	
-  	// carrega informações sobre o aluno
-  $scope.infos_aluno = function(){
-    
-    var dados = {
-        "id_aluno" : 4
-    };
 
-    
-  }
-
-  	// monta pdf
   $scope.gera_dados_pdf = function(){
     monta_pdf($scope.boletim, $scope.aluno.nome);                
   }
 
-
-  $scope.infos_aluno();
 };
 
 function monta_pdf( dados, aluno ){
-    var columns = [
-        {title: "Disciplinas", key: "nome_dis"},
-        {title: "1º Bimestre", key: "nota1"},
-        {title: "2º Bimestre", key: "nota2"},
-        {title: "3º Bimestre", key: "nota3"},
-        {title: "4º Bimestre", key: "nota4"}
-        ];
-        var documento = gerarPDF(dados, columns, "", "Aluno: "+ aluno, "Boletim", "p", "","total");
-        /* dados, columns, autor, solicitante, titulo, orientacao p ou L, limitperpage */
-        documento.save("boletim.pdf");
+  var columns = [
+      {title: "Disciplinas", key: "nome_dis"},
+      {title: "1º Bimestre", key: "nota1"},
+      {title: "2º Bimestre", key: "nota2"},
+      {title: "3º Bimestre", key: "nota3"},
+      {title: "4º Bimestre", key: "nota4"}
+      ];
+      var documento = gerarPDF(dados, columns, "", "Aluno: "+ aluno, "Boletim", "p", "","total");
+      /* dados, columns, autor, solicitante, titulo, orientacao p ou L, limitperpage */
+      documento.save("boletim.pdf");
 
 } 
