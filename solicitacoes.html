@@ -11,6 +11,7 @@
 		<link rel="stylesheet" href="assets/css/theme_light.css" type="text/css" id="skin_color">
 		<link rel="stylesheet" href="css/jquery.dataTables.css">
 		<link rel="stylesheet" type="text/css" href="css/sin.css">
+		<link rel="stylesheet" href="css/sweetalert2.css">
 	
 		<script src="js/angular.min.js"></script>
 		<link rel="shortcut icon" href="img/favicon.ico" />
@@ -66,15 +67,17 @@
 									<onde-estou pagina='Solicitações' icone="clip-file-2"></onde-estou>
 									<titulo-sistema></titulo-sistema>
 							</div>
+							<input type="month" ng-change="listar()" ng-model="mes_ano" min="2020-01" value="2020-09">
 						</div>
 					</div>
 						<!-- <h5 style="margin: 0px; line-height: 20px;">Colocar Filtro</h5> -->
 					<!-- Conteudo -->
 					
-					<div class="tabela" ng-init="lista_solicitacoes()">
+					<div class="tabela" ng-init="listar()">
 						<table id="tabela" class="tabela display" cellspacing="0">
 							<thead>
 								<tr>
+									<th>Id</th>
 									<th>Nome do Funcionário</th>
 									<th>CPF</th>
 									<th>Valor Solicitado</th>
@@ -83,18 +86,18 @@
 								</tr>
 							</thead>
 						</table>
-						<!--div id="loading">
+						<div id="loading" ng-show="loading">
 							<div id="loading_centraliza">
 								<img src="img/ajax_loading.gif">
 							</div>
-						</div-->
+						</div>
 					</div>
 					<div class="col-sm-12" style="margin-top: 5rem;">
 						<div class="row">
 							<div class="col-sm-12">
 									<i class="fas fa-window-close"></i>
-								<button class="btn btn-success" id="btn_editar" data-toggle="modal" data-target="#modal_cadastrar" disabled><i class="clip-checkmark-2"></i> Confirmar</button>
-								<button class="btn btn-bricky" id="btn_excluir" ng-click="excluir_disciplina()" disabled><i class="clip-close-4"></i> Recusar</button>
+								<button class="btn btn-success" id="btn_editar" ng-click="alterar_status('sucesso')" disabled><i class="clip-checkmark-2"></i> Confirmar</button>
+								<button class="btn btn-bricky" id="btn_excluir" ng-click="alterar_status('recusado')" disabled><i class="clip-close-4"></i> Recusar</button>
 							</div>
 						</div>
 					</div>
@@ -121,6 +124,8 @@
 		<script src="js/controller/menu.js"></script>
 		<script src="js/senha.js"></script>
 		<script src="js/funcoes.js"></script>
+		<script src="js/env/env.js"></script>
+		<script src="js/sweetalert2.js"></script>
 
 		<script src="js/jspdf.min.js"></script>                 
 		<script src="js/jspdf.plugin.autotable.js"></script>	

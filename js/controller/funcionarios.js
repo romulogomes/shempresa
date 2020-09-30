@@ -127,7 +127,6 @@ function FuncionariosCtrl ($scope, $rootScope, $http){
       }, function errorCallback(response) {
         alert('Não foi possivel carregar os Dados');
       });
-
   }
 
   $scope.excluir = function(){

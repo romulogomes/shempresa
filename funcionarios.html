@@ -151,67 +151,6 @@
 			</div>
 		</div>
 		<!-- end: PAGE -->
-
-		<!-- APAGAR ISSO -->
-		<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" ng-controller="FuncionariosCtrl">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					<h4 class="modal-title" id="myModalLabel"><i class="fa fa-user"></i> Funcionários</h4>
-				</div>
-				<div class="modal-body">
-						<div class="msg_erro rapida" id="edit_erro">
-							<div class="alert alert-warning">
-								<i class="fa fa-exclamation-triangle"></i>
-								<strong>Atenção!</strong> Preencha todos os campos!
-							</div>
-						</div>
-						<input type="hidden" id="id_professor" disabled>
-						<div class="form-group">
-							<label class="col-sm-3 control-label" for="form-field-1">Nome</label>
-							<div class="col-sm-9">
-								<input type="text" placeholder="Nome" ng-model="nome" id="nome" class="form-control">
-							</div>
-						</div><br><br>
-						<div class="form-group">
-							<label class="col-sm-3 control-label" for="form-field-1">Data de Nascimento</label>
-							<div class="col-sm-9">
-								<input type="date" placeholder="Endereço" ng-model="data_de_nascimento" id="data_de_nascimento" class="form-control">
-							</div>
-						</div><br><br>
-						<div class="form-group">
-							<label class="col-sm-3 control-label" for="form-field-1">CPF</label>
-							<div class="col-sm-9">
-								<input type="text" placeholder="CPF" ng-model="cpf" id="cpf" class="form-control">
-							</div>
-						</div><br>
-						<!-- FIXME Romulo FORMAT SALÁRIO -->
-						<!-- FIXME Romulo adicionar informações bancarias-->
-						<div class="form-group">
-							<label class="col-sm-3 control-label" for="form-field-1">Salário</label>
-							<div class="col-sm-9">
-								<input type="text" placeholder="Salário" ng-model="salario" id="salario" class="form-control">
-							</div>
-						</div><br>
-						<!-- <div class="form-group">
-							<label class="col-sm-3 control-label" for="form-field-1">Telefone</label>
-							<div class="col-sm-9">
-								<input type="number" placeholder="(85)9999999" id="telefone_edit" class="form-control" required>
-							</div>
-						</div> -->
-				</div>	
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-					<button type="button" class="btn btn-primary" ng-click="salvar()">Salvar</button>
-				</div>
-				</div>
-			</div>
-		</div>
-		<!-- APAGAR ISSO -->
-			
-
-
 	</div>
 	<altera-senha></altera-senha>
 	<footer-sesa></footer-sesa>
