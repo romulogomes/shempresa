@@ -35,10 +35,10 @@ function SolicitacoesCtrl ($scope, $rootScope, $http){
         response.data.forEach(dado => 
           t.row.add([
             dado.id,
-            dado.empregado_id,
+            dado.nome,
             dado.cpf || "",
             dado.valor || "",
-            dado.taxa || "",
+            dado.data_da_solicitacao || "",
             dado.status || "",
           ]).draw());
           $scope.loading = false;
