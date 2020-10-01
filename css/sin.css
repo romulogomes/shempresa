@@ -2,3 +2,17 @@
   text-align: center;
   font-weight: bold;
 }
+
+@media (max-width: 767px) {
+  .page-header {
+    margin-top: 70px !important;
+  }
+
+  .main-navigation {
+    margin-top: 1px !important;
+  }
+
+  .navbar-brand{
+    padding: 15px 10px 11px;
+  }
+}

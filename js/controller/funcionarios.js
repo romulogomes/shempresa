@@ -20,9 +20,8 @@ function FuncionariosCtrl ($scope, $rootScope, $http){
     var t = $('#tabela').DataTable({
       "columns": [
           { "width": "5%" },
-          { "width": "35%" },
-          { "width": "15%" },
-          { "width": "15%" },
+          { "width": "30%" },
+          //{ "width": "15%" },
           { "width": "15%" },
           { "width": "15%" },],
       "info": true,
@@ -39,9 +38,8 @@ function FuncionariosCtrl ($scope, $rootScope, $http){
           t.row.add([
             dado.id,
             dado.nome,
-            dado.data_de_nascimento,
+            //dado.data_de_nascimento,
             dado.cpf,
-            dado.email,
             dado.salario,
           ]).draw());
           $scope.loading = false;

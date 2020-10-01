@@ -16,7 +16,7 @@ function SolicitacoesCtrl ($scope, $rootScope, $http){
       "columns": [
           { "width": "5%" },
           { "width": "35%" },
-          { "width": "15%" },
+          // { "width": "15%" },
           { "width": "15%" },
           { "width": "15%" },
           { "width": "15%" },],
@@ -36,7 +36,7 @@ function SolicitacoesCtrl ($scope, $rootScope, $http){
           t.row.add([
             dado.id,
             dado.nome,
-            dado.cpf || "",
+            // dado.cpf || "",
             dado.valor || "",
             dado.data_da_solicitacao || "",
             dado.status || "",
