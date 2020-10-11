@@ -1,4 +1,4 @@
-function MenuCtrl ($scope, $rootScope, $http){
+function MenuCtrl ($scope, $rootScope){
 
 	$scope.menus =  [{
 					    "nome" : "Solicitações",
@@ -12,7 +12,8 @@ function MenuCtrl ($scope, $rootScope, $http){
 					  },
 					];			
 
-	$rootScope.titulo = "Farmácia do Jauro";
+	//FIXME: Romulo - setar o nome da empresa no titulo do sistema
+	$rootScope.titulo = sessionStorage.getItem('nome');
 	$rootScope.subtitulo = "";
 
 }

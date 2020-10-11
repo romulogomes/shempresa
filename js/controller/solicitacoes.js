@@ -1,6 +1,7 @@
 function SolicitacoesCtrl ($scope, $rootScope, $http){
  
   $scope.mes_ano = "2020-10";
+  $scope.empresa_id = sessionStorage.getItem('empresa_id');
 
 	$scope.usuario = function(){
 		return sessionStorage.getItem('nome');
@@ -31,7 +32,7 @@ function SolicitacoesCtrl ($scope, $rootScope, $http){
     $http({
       method: 'POST',
       url: URL+'solicitacoes_por_mes_ano',
-      data: { mes_ano: mes_ano }
+      data: { mes_ano: mes_ano, empresa_id: $scope.empresa_id  }
     }).then(function successCallback(response) {
         console.log(response.data);
         response.data.forEach(dado => 
@@ -39,7 +40,7 @@ function SolicitacoesCtrl ($scope, $rootScope, $http){
             dado.id,
             dado.nome,
             // dado.cpf || "",
-            dado.valor || "",
+            valorFormatado(Number(dado.valor)) || "",
             dado.data_da_solicitacao || "",
             dado.status || "",
           ]).draw());

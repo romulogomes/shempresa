@@ -1,6 +1,7 @@
 function FuncionariosCtrl ($scope, $rootScope, $http){	
 
   $scope.modo = "listagem";
+  $scope.empresa_id = sessionStorage.getItem('empresa_id');
   
 	$scope.usuario = function(){
 		return sessionStorage.getItem('nome');
@@ -30,8 +31,10 @@ function FuncionariosCtrl ($scope, $rootScope, $http){
     });
     
     $http({
-      method: 'GET',
-      url: URL+'empregados',     
+      method: 'POST',
+      url: URL+'empregados_por_empresa',
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'}, transformRequest: function(obj) {var str = [];for(var p in obj)str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p])); return str.join("&"); }, 
+      data: { empresa_id: $scope.empresa_id}  
     }).then(function successCallback(response) {
         console.log(response.data);
         response.data.forEach(dado => 
@@ -40,7 +43,7 @@ function FuncionariosCtrl ($scope, $rootScope, $http){
             dado.nome,
             //dado.data_de_nascimento,
             dado.cpf,
-            dado.salario,
+            valorFormatado(Number(dado.salario)),
           ]).draw());
           $scope.loading = false;
       }, function errorCallback(response) {
