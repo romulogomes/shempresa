@@ -53,6 +53,10 @@ function FuncionariosCtrl ($scope, $rootScope, $http){
   $scope.salvar = function(){
     $scope.loading = true;
     method = "";
+    if(!$scope.nome || !$scope.cpf || !$scope.salario){
+      alert("Preencha todos os campos");
+      return;
+    }
     dados = {
       nome: $scope.nome,
       data_de_nascimento: $scope.data_de_nascimento,
@@ -119,7 +123,7 @@ function FuncionariosCtrl ($scope, $rootScope, $http){
         $scope.empregado_id = dados.id;
         $scope.nome = dados.nome;
         $scope.cpf = dados.cpf;
-        $scope.salario = dados.salario;
+        $scope.salario = Number(dados.salario);
         $scope.loading = false;
         $scope.modo = "edicao";
       }, function errorCallback(response) {

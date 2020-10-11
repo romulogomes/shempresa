@@ -24,6 +24,8 @@ function SolicitacoesCtrl ($scope, $rootScope, $http){
       "paging" : true,
       "pageLength": 10,
     });
+    var column = t.column(0);
+    column.visible( ! column.visible() );
     
     const mes_ano = `${$scope.mes_ano.substring(5)}/${$scope.mes_ano.substring(0, 4)}`;
     $http({
