@@ -42,3 +42,7 @@ function instancia_click(){
 			  			} });
 		  	
 }
+
+function valorFormatado(valor) {
+	return valor.toLocaleString('pt-br', {minimumFractionDigits: 2});
+}
