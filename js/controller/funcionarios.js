@@ -43,7 +43,7 @@ function FuncionariosCtrl ($scope, $rootScope, $http){
             dado.nome,
             //dado.data_de_nascimento,
             dado.cpf,
-            valorFormatado(dado.salario),
+            valorFormatado(Number(dado.salario)),
           ]).draw());
           $scope.loading = false;
       }, function errorCallback(response) {

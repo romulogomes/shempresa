@@ -40,7 +40,7 @@ function SolicitacoesCtrl ($scope, $rootScope, $http){
             dado.id,
             dado.nome,
             // dado.cpf || "",
-            valorFormatado(dado.valor) || "",
+            valorFormatado(Number(dado.valor)) || "",
             dado.data_da_solicitacao || "",
             dado.status || "",
           ]).draw());
