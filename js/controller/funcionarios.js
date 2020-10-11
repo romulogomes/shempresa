@@ -64,7 +64,8 @@ function FuncionariosCtrl ($scope, $rootScope, $http){
       nome: $scope.nome,
       data_de_nascimento: $scope.data_de_nascimento,
       cpf: $scope.cpf,
-      salario: $scope.salario
+      salario: $scope.salario,
+      empresa_id: $scope.empresa_id
     }
     if($scope.empregado_id)  {
       dados.id = $scope.empregado_id;
